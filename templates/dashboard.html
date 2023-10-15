@@ -1,0 +1,93 @@
+{% extends "base.html" %} 
+
+
+{% block content %}
+<section class="h-100 gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h5 class="mb-0">dashboard</h5>
+              <a href="{% url 'addnewproduct' %}" class='btn btn-secondary'>Add new product </a>
+            </div>
+            
+            <div class="card-body">
+              <!-- Single item -->
+              {% for product in products %}
+              <div class="row">
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                  <!-- Image -->
+                  <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                      class="w-100" alt="{{ product.name }}"/>
+                      {% else %}
+                            {{ product.name }}
+                            {% endif %}
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                    </a>
+                  </div>
+                  <!-- Image -->
+                </div>
+  
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                  <!-- Data -->
+                  <p><strong>{{ product.name }}</strong></p>
+                  <p>Color: blue</p>
+                  <p>Stock: 10</p>
+                  
+                  <!-- Data -->
+                </div>
+  
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <!-- Quantity -->
+                  <div class="d-flex mb-4" style="max-width: 300px">
+                    <a href="{% url 'productedit' product.id %}" class='btn btn-primary'>edit</a>
+                       
+                    <a href="{% url 'productdelete' product.id  %}" class='btn btn-danger'>Delete</a>
+  
+                    
+                  </div>
+                  <!-- Quantity -->
+  
+                  <!-- Price -->
+                  <p class="text-start text-md-center">
+                    <strong>₹ {{ product.price }}</strong>
+                  </p>
+                  <!-- Price -->
+                </div>
+              </div>
+
+              <!-- Single item -->
+  
+              <hr class="my-4" />
+              {% endfor %}
+  
+              
+            </div>
+          </div>
+          
+         
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+<script>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #6a11cb;
+        
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+        
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+        }
+</script>
+
+
+{% endblock  %}

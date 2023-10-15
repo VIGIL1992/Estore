@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+
+{% block content %}
+
+
+<!-- Default Basic Forms Start -->
+					<div class="pd-20 card-box mb-30">
+						<div class="clearfix">
+							<div class="pull-left">
+								<h4 class="text-blue h4">Add product</h4>
+								<p class="mb-30">.....</p>
+							</div>
+						</div>
+
+						<form method='POST' action = '{% url 'addnewproduct' %}' enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="form-group">
+							 {{form.as_p}} 
+							</div>
+							<h1>{{form.as_p.brand}}</h1>
+							<img id="output" src="{{form.id_images}}" width="200" >
+                            <div class="form-group row">
+								
+                                <button class="btn btn-primary btn-sm" type="submit">Register</button>
+                             </div> 
+							
+						</form>
+					</div>
+					
+					<!-- Default Basic Forms End -->
+
+
+					<script>
+						var loadFile = function(event) {
+							//var image = document.getElementById('output');
+							//image.src = URL.createObjectURL(event.target.files[0]);
+							document.getElementById('output').src = URL.createObjectURL(event.target.files[0]);
+						};
+						</script>				
+{% endblock %}

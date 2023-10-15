@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<h1>login</h1>
+    <div class="py-5 col-8">
+        
+        <div class="container px-4 px-lg-5 mt-5">
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="mb-3 ">
+                    <label for="text" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" plceholder="Enter your username">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                
+                <button type="submit" class="btn btn-secondary">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock  %}
